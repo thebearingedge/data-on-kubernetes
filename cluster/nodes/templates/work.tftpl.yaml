@@ -1,0 +1,3 @@
+machine:
+  nodeLabels:
+    k8s-role/work: ""

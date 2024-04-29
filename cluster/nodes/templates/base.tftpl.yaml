@@ -1,0 +1,41 @@
+cluster:
+  discovery:
+    registries:
+      kubernetes:
+        disabled: false
+      service:
+        disabled: true
+  controlPlane:
+    endpoint: ${public_endpoint}
+  controllerManager:
+    extraArgs:
+      allocate-node-cidrs: true
+  apiServer:
+    certSANs:
+      - ${cmd_private_ip}
+  network:
+    cni:
+      name: none
+    podSubnets:
+      - ${pod_cidr}
+    serviceSubnets:
+      - ${service_cidr}
+machine:
+  features:
+    kubePrism:
+      enabled: true
+      port: 7445
+  certSANs:
+    - ${cmd_private_ip}
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+    nodeIP:
+      validSubnets:
+        - ${ctrl_cidr}
+        - ${work_cidr}
+  time:
+    servers:
+      - time.cloudflare.com
+      - ntp1.net.berkeley.edu
+      - pool.ntp.org

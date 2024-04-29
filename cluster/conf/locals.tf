@@ -4,9 +4,9 @@ locals {
 
 locals {
   network_cidr = "10.0.0.0/8"
-  ctrl_cidr    = "10.0.64.0/24"
+  cmd_cidr     = "10.0.8.0/24"
+  ctrl_cidr    = "10.0.16.0/24"
   work_cidr    = "10.0.32.0/24"
-  proxy_cidr   = "10.0.16.0/24"
 }
 
 locals {
@@ -18,16 +18,16 @@ locals {
 
 locals {
   ctrl_nodes = {
-    for i, _ in range(0, 1) :
-    cidrhost(local.ctrl_cidr, i + 1) => {
-      name  = join("-", compact([local.cluster_name, "ctrl"]))
+    for n in range(var.ctrl_nodes) :
+    cidrhost(local.ctrl_cidr, n + 1) => {
+      name  = join("-", ["ctrl", local.cluster_name])
       image = local.server_images.talos
     }
   }
   work_nodes = {
-    for i, _ in range(0, 1) :
-    cidrhost(local.work_cidr, i + 1) => {
-      name  = join("-", compact([local.cluster_name, "work"]))
+    for n in range(var.work_nodes) :
+    cidrhost(local.work_cidr, n + 1) => {
+      name  = join("-", ["work", local.cluster_name])
       image = local.server_images.talos
     }
   }

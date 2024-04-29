@@ -1,0 +1,24 @@
+machine:
+  nodeLabels:
+    k8s-role/ctrl: ""
+  features:
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:reader
+      allowedKubernetesNamespaces:
+        - kube-system
+cluster:
+  proxy:
+    disabled: true
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          exemptions:
+            namespaces:
+              - cilium-test
+              - local-path-storage
+  etcd:
+    advertisedSubnets:
+      - ${ctrl_cidr}
