@@ -22,6 +22,8 @@ cluster:
       - ${service_cidr}
 machine:
   features:
+    hostDNS:
+      forwardKubeDNSToHost: true
     kubePrism:
       enabled: true
       port: 7445

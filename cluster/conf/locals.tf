@@ -7,6 +7,8 @@ locals {
   cmd_cidr     = "10.0.8.0/24"
   ctrl_cidr    = "10.0.16.0/24"
   work_cidr    = "10.0.32.0/24"
+  pod_cidr     = "10.244.0.0/16"
+  service_cidr = "10.96.0.0/12"
 }
 
 locals {

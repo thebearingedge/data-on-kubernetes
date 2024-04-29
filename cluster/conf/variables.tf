@@ -13,6 +13,26 @@ variable "haproxy_version" {
   default = "2.9.7"
 }
 
+variable "k8s_version" {
+  type    = string
+  default = "1.30.0"
+}
+
+variable "cilium_version" {
+  type    = string
+  default = "1.15.4"
+}
+
+variable "local_path_provisioner_version" {
+  type    = string
+  default = "0.0.26"
+}
+
+variable "kubelet_serving_cert_approver_version" {
+  type    = string
+  default = "0.8.2"
+}
+
 variable "ctrl_nodes" {
   type    = number
   default = 1

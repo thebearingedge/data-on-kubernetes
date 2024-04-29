@@ -6,8 +6,20 @@ variable "cluster" {
   })
 }
 
+variable "net" {
+  type = object({
+    bridge_network_id  = string
+    private_network_id = string
+    service_cidr       = string
+    ctrl_cidr          = string
+    work_cidr          = string
+    pod_cidr           = string
+  })
+}
+
 variable "cmd" {
   type = object({
+    hostname   = string
     private_ip = string
     image      = string
   })
