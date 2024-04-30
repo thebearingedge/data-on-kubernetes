@@ -17,6 +17,12 @@ variable "net" {
   })
 }
 
+variable "dns" {
+  type = object({
+    private_ip = string
+  })
+}
+
 variable "cmd" {
   type = object({
     hostname   = string

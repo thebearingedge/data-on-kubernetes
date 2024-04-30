@@ -1,3 +1,11 @@
+output "cloud_name" {
+  value = local.cloud_name
+}
+
+output "local_name" {
+  value = local.local_name
+}
+
 output "cluster_name" {
   value = local.cluster_name
 }
@@ -23,6 +31,15 @@ output "net" {
   }
 }
 
+output "cloud" {
+  value = {
+    private_ip = cidrhost(local.cloud_cidr, 1)
+    name       = local.cloud_name
+    image      = local.server_images.haproxy
+    hostname   = var.cloud_hostname
+  }
+}
+
 output "dns" {
   value = {
     private_ip = cidrhost(local.cloud_cidr, 2)
@@ -42,5 +59,14 @@ output "nodes" {
       image      = local.server_images.haproxy
       hostname   = join(".", ["cmd", var.local_hostname])
     }
+  }
+}
+
+output "local" {
+  value = {
+    private_ip = cidrhost(local.local_cidr, 1)
+    name       = local.local_name
+    image      = local.server_images.haproxy
+    hostname   = var.local_hostname
   }
 }

@@ -1,0 +1,12 @@
+$ORIGIN ${cloud_hostname}.
+
+@ IN SOA ${hostname}. dns@${cloud_hostname} (
+  1
+  3600
+  600
+  604800
+  86400
+)
+
+@ 300 IN A ${cloud_ip_address}
+* 300 IN A ${cloud_ip_address}

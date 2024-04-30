@@ -6,7 +6,27 @@ module "net" {
   source       = "./net"
   network_cidr = module.conf.net.network_cidr
   cluster = {
-    name = module.conf.cluster_name
+    name = module.conf.local_name
+  }
+}
+
+module "dns" {
+  source   = "./dns"
+  name     = module.conf.dns.name
+  image    = module.conf.dns.image
+  hostname = module.conf.dns.hostname
+  net = {
+    private_ip         = module.conf.dns.private_ip
+    cloud_hostname     = module.conf.cloud.hostname
+    cloud_ip_address   = module.conf.cloud.private_ip
+    local_hostname     = module.conf.local.hostname
+    local_ip_address   = module.conf.local.private_ip
+    bridge_network_id  = module.net.bridge_network_id
+    private_network_id = module.net.private_network_id
+  }
+  cmd = {
+    hostname   = module.conf.nodes.cmd.hostname
+    private_ip = module.conf.nodes.cmd.private_ip
   }
 }
 
@@ -16,6 +36,9 @@ module "nodes" {
     name          = module.conf.cluster_name
     k8s_version   = module.conf.versions.k8s
     talos_version = module.conf.versions.talos
+  }
+  dns = {
+    private_ip = module.dns.private_ip
   }
   net = {
     bridge_network_id  = module.net.bridge_network_id

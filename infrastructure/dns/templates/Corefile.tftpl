@@ -1,0 +1,13 @@
+${cloud_hostname} {
+  root /etc/coredns/zones
+  file cloud.zone
+}
+
+${local_hostname} {
+  root /etc/coredns/zones
+  file local.zone
+}
+
+.:53 {
+  forward . /etc/resolv.conf
+}

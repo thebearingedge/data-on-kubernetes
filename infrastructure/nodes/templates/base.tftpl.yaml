@@ -34,10 +34,21 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
+    extraMounts:
+      - source: /opt/local-path-provisioner
+        destination: /opt/local-path-provisioner
+        type: bind
+        options:
+          - bind
+          - rshared
+          - rw
     nodeIP:
       validSubnets:
         - ${ctrl_cidr}
         - ${work_cidr}
+  network:
+    nameservers:
+      - ${dns_private_ip}
   time:
     servers:
       - time.cloudflare.com

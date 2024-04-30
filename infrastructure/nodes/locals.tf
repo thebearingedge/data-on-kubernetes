@@ -24,6 +24,7 @@ locals {
     service_cidr    = var.net.service_cidr
     cmd_hostname    = var.cmd.hostname
     cmd_private_ip  = var.cmd.private_ip
+    dns_private_ip  = var.dns.private_ip
     public_endpoint = local.public_endpoint
   })
 
