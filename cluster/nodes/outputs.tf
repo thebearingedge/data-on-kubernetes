@@ -2,10 +2,6 @@ output "public_endpoint" {
   value = local.public_endpoint
 }
 
-output "talosconfig" {
-  value = replace(data.talos_client_configuration.main.talos_config, var.cmd.private_ip, var.cmd.hostname)
-}
-
 output "servers" {
   value = concat([
     for ip, node in docker_container.ctrl : {
@@ -24,10 +20,10 @@ output "boot_node" {
   value = local.boot_node
 }
 
-output "kubernetes" {
-  value = data.talos_cluster_kubeconfig.main.kubernetes_client_configuration
+output "kubeconfig" {
+  value = terraform_data.kubeconfig.output
 }
 
-output "kubeconfig" {
-  value = data.talos_cluster_kubeconfig.main.kubeconfig_raw
+output "talosconfig" {
+  value = terraform_data.talosconfig.output
 }

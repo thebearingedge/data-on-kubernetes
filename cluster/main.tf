@@ -38,3 +38,13 @@ module "nodes" {
     version = module.conf.versions.local_path_provisioner
   }
 }
+
+resource "local_sensitive_file" "kubeconfig" {
+  content  = module.nodes.kubeconfig
+  filename = "${path.module}/.kube/config"
+}
+
+resource "local_sensitive_file" "talosconfig" {
+  content  = module.nodes.talosconfig
+  filename = "${path.module}/.talos/config"
+}

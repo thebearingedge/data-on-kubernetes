@@ -8,10 +8,11 @@ resource "random_id" "ctrl" {
 }
 
 resource "docker_container" "ctrl" {
-  for_each = var.ctrl
-  name     = join("-", compact([each.value.name, random_id.ctrl[each.key].hex]))
-  hostname = join("-", compact([each.value.name, random_id.ctrl[each.key].hex]))
-  image    = each.value.image
+  for_each     = var.ctrl
+  name         = join("-", compact([each.value.name, random_id.ctrl[each.key].hex]))
+  hostname     = join("-", compact([each.value.name, random_id.ctrl[each.key].hex]))
+  image        = each.value.image
+  network_mode = "bridge"
   networks_advanced {
     name = var.net.bridge_network_id
   }
@@ -51,9 +52,10 @@ resource "docker_container" "ctrl" {
 }
 
 resource "docker_container" "cmd" {
-  name     = replace(var.cmd.hostname, ".", "-")
-  hostname = var.cmd.hostname
-  image    = var.cmd.image
+  name         = replace(var.cmd.hostname, ".", "-")
+  hostname     = var.cmd.hostname
+  image        = var.cmd.image
+  network_mode = "bridge"
   networks_advanced {
     name = var.net.bridge_network_id
   }
@@ -93,10 +95,11 @@ resource "random_id" "work" {
 }
 
 resource "docker_container" "work" {
-  for_each = var.work
-  name     = join("-", compact([each.value.name, random_id.work[each.key].hex]))
-  hostname = join("-", compact([each.value.name, random_id.work[each.key].hex]))
-  image    = each.value.image
+  for_each     = var.work
+  name         = join("-", compact([each.value.name, random_id.work[each.key].hex]))
+  hostname     = join("-", compact([each.value.name, random_id.work[each.key].hex]))
+  image        = each.value.image
+  network_mode = "bridge"
   networks_advanced {
     name = var.net.bridge_network_id
   }
@@ -172,4 +175,28 @@ resource "talos_machine_bootstrap" "main" {
   client_configuration = talos_machine_secrets.main.client_configuration
   node                 = local.boot_node
   endpoint             = docker_container.cmd.hostname
+}
+
+resource "terraform_data" "kubeconfig" {
+  input = data.talos_cluster_kubeconfig.main.kubeconfig_raw
+  lifecycle {
+    ignore_changes = [
+      input
+    ]
+    replace_triggered_by = [
+      talos_machine_bootstrap.main
+    ]
+  }
+}
+
+resource "terraform_data" "talosconfig" {
+  input = replace(data.talos_client_configuration.main.talos_config, var.cmd.private_ip, var.cmd.hostname)
+  lifecycle {
+    ignore_changes = [
+      input
+    ]
+    replace_triggered_by = [
+      talos_machine_bootstrap.main
+    ]
+  }
 }
