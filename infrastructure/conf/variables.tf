@@ -1,4 +1,9 @@
-variable "cluster_hostname" {
+variable "cloud_hostname" {
+  type    = string
+  default = "cloud.test"
+}
+
+variable "local_hostname" {
   type    = string
   default = "local.test"
 }

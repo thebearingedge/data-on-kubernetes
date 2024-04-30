@@ -1,3 +1,7 @@
+data "docker_registry_image" "coredns" {
+  name = "index.docker.io/coredns/coredns:1.11.1"
+}
+
 data "docker_registry_image" "talos" {
   name = "ghcr.io/siderolabs/talos:v${var.talos_version}"
 }

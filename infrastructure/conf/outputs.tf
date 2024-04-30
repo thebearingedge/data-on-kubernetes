@@ -23,6 +23,15 @@ output "net" {
   }
 }
 
+output "dns" {
+  value = {
+    private_ip = cidrhost(local.cloud_cidr, 2)
+    name       = join("-", ["dns", local.cloud_name])
+    image      = local.server_images.coredns
+    hostname   = join(".", ["dns", var.cloud_hostname])
+  }
+}
+
 output "nodes" {
   value = {
     image = local.server_images.talos
@@ -31,7 +40,7 @@ output "nodes" {
     cmd = {
       private_ip = cidrhost(local.cmd_cidr, 1)
       image      = local.server_images.haproxy
-      hostname   = join(".", ["cmd", var.cluster_hostname])
+      hostname   = join(".", ["cmd", var.local_hostname])
     }
   }
 }

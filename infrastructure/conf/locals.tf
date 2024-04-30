@@ -1,9 +1,11 @@
 locals {
-  cluster_name = replace(var.cluster_hostname, ".", "-")
+  cloud_name   = replace(var.cloud_hostname, ".", "-")
+  cluster_name = replace(var.local_hostname, ".", "-")
 }
 
 locals {
   network_cidr = "10.0.0.0/8"
+  cloud_cidr   = "10.0.128.0/24"
   cmd_cidr     = "10.0.8.0/24"
   ctrl_cidr    = "10.0.16.0/24"
   work_cidr    = "10.0.32.0/24"
@@ -13,6 +15,7 @@ locals {
 
 locals {
   server_images = {
+    coredns = docker_image.coredns.image_id
     talos   = docker_image.talos.image_id
     haproxy = docker_image.haproxy.image_id
   }
