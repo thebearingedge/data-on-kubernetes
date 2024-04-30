@@ -12,6 +12,7 @@ cluster:
       allocate-node-cidrs: true
   apiServer:
     certSANs:
+      - ${cmd_hostname}
       - ${cmd_private_ip}
   network:
     cni:
@@ -28,6 +29,7 @@ machine:
       enabled: true
       port: 7445
   certSANs:
+    - ${cmd_hostname}
     - ${cmd_private_ip}
   kubelet:
     extraArgs:

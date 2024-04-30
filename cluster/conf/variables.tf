@@ -30,7 +30,7 @@ variable "local_path_provisioner_version" {
 
 variable "kubelet_serving_cert_approver_version" {
   type    = string
-  default = "0.8.2"
+  default = "0.8"
 }
 
 variable "ctrl_nodes" {
