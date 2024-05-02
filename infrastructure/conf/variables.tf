@@ -18,6 +18,11 @@ variable "haproxy_version" {
   default = "2.9.7"
 }
 
+variable "minio_version" {
+  type    = string
+  default = "RELEASE.2024-05-01T01-11-10Z"
+}
+
 variable "k8s_version" {
   type    = string
   default = "1.30.0"
@@ -46,4 +51,14 @@ variable "ctrl_nodes" {
 variable "work_nodes" {
   type    = number
   default = 1
+}
+
+variable "storage_access_key_id" {
+  type    = string
+  default = "minioadmin"
+}
+
+variable "storage_secret_access_key" {
+  type    = string
+  default = "minioadmin"
 }

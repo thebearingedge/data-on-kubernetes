@@ -9,3 +9,7 @@ data "docker_registry_image" "talos" {
 data "docker_registry_image" "haproxy" {
   name = "ghcr.io/haproxytech/haproxy-docker-alpine:${var.haproxy_version}"
 }
+
+data "docker_registry_image" "minio" {
+  name = "quay.io/minio/minio:${var.minio_version}"
+}

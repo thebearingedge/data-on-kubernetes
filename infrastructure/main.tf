@@ -10,6 +10,20 @@ module "net" {
   }
 }
 
+module "storage" {
+  source = "./storage"
+  name   = module.conf.storage.name
+  image  = module.conf.storage.image
+  net = {
+    private_network_id = module.net.private_network_id
+    private_ip         = module.conf.storage.private_ip
+  }
+  services          = module.conf.storage.services
+  access_key_id     = module.conf.storage.access_key_id
+  secret_access_key = module.conf.storage.secret_access_key
+  buckets           = module.conf.storage.buckets
+}
+
 module "dns" {
   source   = "./dns"
   name     = module.conf.dns.name

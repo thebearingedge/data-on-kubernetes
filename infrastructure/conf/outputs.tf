@@ -49,6 +49,30 @@ output "dns" {
   }
 }
 
+output "storage" {
+  value = {
+    private_ip        = cidrhost(local.cloud_cidr, 3)
+    name              = join("-", ["storage", local.cloud_name])
+    image             = local.server_images.minio
+    access_key_id     = var.storage_access_key_id
+    secret_access_key = var.storage_secret_access_key
+    volume_name       = join("-", ["storage", local.cloud_name])
+    buckets = [
+      local.storage_buckets.flux2
+    ]
+    services = {
+      s3 = {
+        hostname = join(".", ["s3", local.cloud_name])
+        port     = 9000
+      }
+      console = {
+        hostname = join(".", ["minio", local.cloud_name])
+        port     = 9001
+      }
+    }
+  }
+}
+
 output "nodes" {
   value = {
     image = local.server_images.talos

@@ -20,6 +20,7 @@ locals {
     coredns = docker_image.coredns.image_id
     talos   = docker_image.talos.image_id
     haproxy = docker_image.haproxy.image_id
+    minio   = docker_image.minio.image_id
   }
 }
 
@@ -37,5 +38,11 @@ locals {
       name  = join("-", ["work", local.local_name])
       image = local.server_images.talos
     }
+  }
+}
+
+locals {
+  storage_buckets = {
+    flux2 = "flux2"
   }
 }
