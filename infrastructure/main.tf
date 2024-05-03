@@ -44,6 +44,21 @@ module "dns" {
   }
 }
 
+module "cloud" {
+  source   = "./cloud"
+  name     = module.conf.cloud.name
+  image    = module.conf.cloud.image
+  hostname = module.conf.cloud.hostname
+  net = {
+    bridge_network_id  = module.net.bridge_network_id
+    private_network_id = module.net.private_network_id
+    private_ip         = module.conf.cloud.private_ip
+  }
+  aliases = {
+    "${module.conf.storage.name}" = module.conf.storage.services
+  }
+}
+
 module "nodes" {
   source = "./nodes"
   cluster = {
