@@ -19,7 +19,7 @@ variable "services" {
       hostname = string
       port     = string
     })
-    console = object({
+    ui = object({
       hostname = string
       port     = number
     })

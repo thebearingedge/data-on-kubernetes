@@ -62,11 +62,11 @@ output "storage" {
     ]
     services = {
       s3 = {
-        hostname = join(".", ["s3", local.cloud_name])
+        hostname = join(".", ["s3", var.cloud_hostname])
         port     = 9000
       }
-      console = {
-        hostname = join(".", ["minio", local.cloud_name])
+      ui = {
+        hostname = join(".", ["minio", var.cloud_hostname])
         port     = 9001
       }
     }

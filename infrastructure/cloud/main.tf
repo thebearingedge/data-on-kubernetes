@@ -44,19 +44,19 @@ resource "docker_container" "cloud" {
       ])
     })
   }
-  # upload {
-  #   file = "/usr/local/etc/haproxy/ports.map"
-  #   content = templatefile("${path.module}/templates/ports.tftpl.map", {
-  #     hosts = flatten([
-  #       for service, hosts in var.aliases : [
-  #         for host in hosts : {
-  #           name = host.hostname
-  #           port = host.port
-  #         }
-  #       ]
-  #     ])
-  #   })
-  # }
+  upload {
+    file = "/usr/local/etc/haproxy/ports.map"
+    content = templatefile("${path.module}/templates/ports.tftpl.map", {
+      hosts = flatten([
+        for service, hosts in var.aliases : [
+          for host in hosts : {
+            name = host.hostname
+            port = host.port
+          }
+        ]
+      ])
+    })
+  }
   volumes {
     read_only      = true
     host_path      = abspath("${path.module}/../.tmp/tls.pem")

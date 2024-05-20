@@ -9,7 +9,7 @@ resource "docker_container" "storage" {
   env = [
     "MINIO_ROOT_USER=${var.access_key_id}",
     "MINIO_ROOT_PASSWORD=${var.secret_access_key}",
-    "MINIO_BROWSER_REDIRECT_URL=https://${var.services.console.hostname}"
+    "MINIO_BROWSER_REDIRECT_URL=https://${var.services.ui.hostname}"
   ]
   volumes {
     container_path = "/data"
@@ -25,7 +25,7 @@ resource "docker_container" "storage" {
     name         = var.net.private_network_id
     ipv4_address = var.net.private_ip
   }
-  command = ["server", "/data", "--console-address", ":${var.services.console.port}"]
+  command = ["server", "/data", "--console-address", ":${var.services.ui.port}"]
   healthcheck {
     start_period = "3s"
     interval     = "5s"
