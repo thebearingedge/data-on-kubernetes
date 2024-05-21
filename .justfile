@@ -10,6 +10,12 @@ apply *args:
 destroy *args:
   terraform -chdir=infrastructure destroy {{args}}
 
+up *args:
+  terraform -chdir=manifests apply {{args}}
+
+down *args:
+  terraform -chdir=manifests destroy {{args}}
+
 certs:
   mkcert -cert-file infrastructure/.tmp/tls.crt -key-file infrastructure/.tmp/tls.key \
     "$LOCAL_HOSTNAME" \
