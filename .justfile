@@ -4,6 +4,12 @@ set dotenv-load
 default:
   @just --list --unsorted --list-heading '' --list-prefix ''
 
+apply *args:
+  terraform -chdir=infrastructure apply {{args}}
+
+destroy *args:
+  terraform -chdir=infrastructure destroy {{args}}
+
 certs:
   mkcert -cert-file infrastructure/.tmp/tls.crt -key-file infrastructure/.tmp/tls.key \
     "$LOCAL_HOSTNAME" \
