@@ -43,6 +43,6 @@ locals {
 
 locals {
   storage_buckets = {
-    flux2 = "flux2"
+    flux = "flux"
   }
 }

@@ -25,7 +25,7 @@ resource "docker_container" "storage" {
     name         = var.net.private_network_id
     ipv4_address = var.net.private_ip
   }
-  command = ["server", "/data", "--console-address", ":${var.services.ui.port}"]
+  command = ["server", "/data", "--console-address", "${var.net.private_ip}:${var.services.ui.port}"]
   healthcheck {
     start_period = "3s"
     interval     = "5s"

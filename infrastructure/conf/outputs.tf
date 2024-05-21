@@ -58,7 +58,7 @@ output "storage" {
     secret_access_key = var.storage_secret_access_key
     volume_name       = join("-", ["storage", local.cloud_name])
     buckets = [
-      local.storage_buckets.flux2
+      local.storage_buckets.flux
     ]
     services = {
       s3 = {

@@ -15,3 +15,5 @@ healthcheck() {
     mc mb --ignore-existing "main/$bucket" > /dev/null
   done
 }
+
+healthcheck "$@"
