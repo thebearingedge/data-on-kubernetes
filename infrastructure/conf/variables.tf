@@ -10,7 +10,7 @@ variable "local_hostname" {
 
 variable "talos_version" {
   type    = string
-  default = "1.7.0"
+  default = "1.7.2"
 }
 
 variable "haproxy_version" {
