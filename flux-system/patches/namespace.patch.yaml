@@ -1,0 +1,7 @@
+- op: replace
+  path: /metadata/labels/pod-security.kubernetes.io~1warn
+  value: privileged
+
+- op: replace
+  path: /metadata/labels/pod-security.kubernetes.io~1warn-version
+  value: latest

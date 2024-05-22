@@ -11,10 +11,31 @@ destroy *args:
   terraform -chdir=infrastructure destroy {{args}}
 
 up *args:
-  terraform -chdir=manifests apply {{args}}
+  kubectl create secret generic local-ca \
+    --dry-run=client \
+    --from-file=ca.pem="$LOCAL_CA_CERT" \
+    --output yaml > flux-system/.tmp/local-ca.yaml
+  flux install \
+    --components source-controller \
+    --components helm-controller \
+    --components kustomize-controller \
+    --export > flux-system/.tmp/flux-install.yaml
+  kubectl apply -k flux-system
+  flux create source bucket flux \
+    --interval=5s \
+    --bucket-name=flux \
+    --access-key="$S3_ACCESS_KEY_ID" \
+    --secret-key="$S3_SECRET_ACCESS_KEY" \
+    --endpoint="s3.$CLOUD_HOSTNAME"
+  flux create kustomization flux \
+    --prune=true \
+    --interval=10s \
+    --source=Bucket/flux \
+    --path=./manifests/environments/local
 
 down *args:
-  terraform -chdir=manifests destroy {{args}}
+  flux uninstall --silent
+  rm -f flux-system/.tmp/*.yaml
 
 certs:
   mkcert -cert-file infrastructure/.tmp/tls.crt -key-file infrastructure/.tmp/tls.key \

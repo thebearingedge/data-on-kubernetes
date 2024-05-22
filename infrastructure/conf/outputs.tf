@@ -73,6 +73,15 @@ output "storage" {
   }
 }
 
+output "sync" {
+  value = {
+    private_ip = cidrhost(local.cloud_cidr, 4)
+    name       = join("-", ["sync", local.cloud_name])
+    image      = local.server_images.minio
+    bucket     = local.storage_buckets.flux
+  }
+}
+
 output "nodes" {
   value = {
     image = local.server_images.talos

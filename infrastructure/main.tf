@@ -24,6 +24,23 @@ module "storage" {
   buckets           = module.conf.storage.buckets
 }
 
+module "sync" {
+  source = "./sync"
+  name   = module.conf.sync.name
+  image  = module.conf.sync.image
+  net = {
+    private_network_id = module.net.private_network_id
+    private_ip         = module.conf.sync.private_ip
+  }
+  s3 = {
+    bucket            = module.conf.sync.bucket
+    endpoint          = module.storage.endpoint
+    access_key_id     = module.conf.storage.access_key_id
+    secret_access_key = module.conf.storage.secret_access_key
+  }
+  local_ca_cert = var.local_ca_cert
+}
+
 module "dns" {
   source   = "./dns"
   name     = module.conf.dns.name

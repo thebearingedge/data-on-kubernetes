@@ -1,0 +1,17 @@
+namespace: flux-system
+
+resources:
+  - .tmp/local-ca.yaml
+  - .tmp/flux-install.yaml
+
+patches:
+  - target:
+      kind: Namespace
+      version: v1
+      name: flux-system
+    path: patches/namespace.patch.yaml
+  - target:
+      kind: Deployment
+      group: apps
+      version: v1
+    path: patches/deployment.patch.yaml
