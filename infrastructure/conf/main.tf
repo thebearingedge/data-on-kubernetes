@@ -21,3 +21,9 @@ resource "docker_image" "minio" {
   keep_locally  = true
   pull_triggers = [data.docker_registry_image.minio.sha256_digest]
 }
+
+resource "docker_image" "busybox" {
+  name          = data.docker_registry_image.busybox.name
+  keep_locally  = true
+  pull_triggers = [data.docker_registry_image.busybox.sha256_digest]
+}

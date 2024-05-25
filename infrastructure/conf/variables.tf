@@ -8,6 +8,11 @@ variable "local_hostname" {
   default = "local.test"
 }
 
+variable "coredns_version" {
+  type    = string
+  default = "1.11.1"
+}
+
 variable "talos_version" {
   type    = string
   default = "1.7.2"
@@ -21,6 +26,11 @@ variable "haproxy_version" {
 variable "minio_version" {
   type    = string
   default = "RELEASE.2024-05-01T01-11-10Z"
+}
+
+variable "busybox_version" {
+  type    = string
+  default = "1.36.1"
 }
 
 variable "k8s_version" {

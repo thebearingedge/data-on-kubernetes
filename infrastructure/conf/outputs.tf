@@ -73,9 +73,24 @@ output "storage" {
   }
 }
 
-output "sync" {
+output "secrets" {
   value = {
     private_ip = cidrhost(local.cloud_cidr, 4)
+    name       = join("-", ["secrets", local.cloud_name])
+    image      = local.server_images.busybox
+    hostname   = join("-", ["secrets", var.cloud_hostname])
+    services = {
+      main = {
+        hostname = join(".", ["secrets", var.cloud_hostname])
+        port     = 80
+      }
+    }
+  }
+}
+
+output "sync" {
+  value = {
+    private_ip = cidrhost(local.cloud_cidr, 5)
     name       = join("-", ["sync", local.cloud_name])
     image      = local.server_images.minio
     bucket     = local.storage_buckets.flux

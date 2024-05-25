@@ -24,6 +24,17 @@ module "storage" {
   buckets           = module.conf.storage.buckets
 }
 
+module "secrets" {
+  source   = "./secrets"
+  name     = module.conf.secrets.name
+  image    = module.conf.secrets.image
+  hostname = module.conf.secrets.hostname
+  net = {
+    private_network_id = module.net.private_network_id
+    private_ip         = module.conf.secrets.private_ip
+  }
+}
+
 module "sync" {
   source = "./sync"
   name   = module.conf.sync.name
@@ -73,6 +84,7 @@ module "cloud" {
   }
   aliases = {
     "${module.conf.storage.name}" = module.conf.storage.services
+    "${module.conf.secrets.name}" = module.conf.secrets.services
   }
 }
 

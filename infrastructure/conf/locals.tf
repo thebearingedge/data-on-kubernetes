@@ -21,6 +21,7 @@ locals {
     talos   = docker_image.talos.image_id
     haproxy = docker_image.haproxy.image_id
     minio   = docker_image.minio.image_id
+    busybox = docker_image.busybox.image_id
   }
 }
 

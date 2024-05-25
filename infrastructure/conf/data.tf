@@ -1,5 +1,5 @@
 data "docker_registry_image" "coredns" {
-  name = "index.docker.io/coredns/coredns:1.11.1"
+  name = "index.docker.io/coredns/coredns:${var.coredns_version}"
 }
 
 data "docker_registry_image" "talos" {
@@ -12,4 +12,8 @@ data "docker_registry_image" "haproxy" {
 
 data "docker_registry_image" "minio" {
   name = "quay.io/minio/minio:${var.minio_version}"
+}
+
+data "docker_registry_image" "busybox" {
+  name = "index.docker.io/library/busybox:${var.busybox_version}"
 }

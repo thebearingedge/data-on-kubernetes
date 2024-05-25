@@ -2,11 +2,11 @@ variable "name" {
   type = string
 }
 
-variable "hostname" {
+variable "image" {
   type = string
 }
 
-variable "image" {
+variable "hostname" {
   type = string
 }
 
