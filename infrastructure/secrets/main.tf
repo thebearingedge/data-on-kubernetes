@@ -1,6 +1,7 @@
 resource "docker_container" "secrets" {
-  name  = var.name
-  image = var.image
+  name         = var.name
+  image        = var.image
+  network_mode = "bridge"
   networks_advanced {
     name         = var.net.private_network_id
     ipv4_address = var.net.private_ip

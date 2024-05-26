@@ -36,6 +36,9 @@ module "secrets" {
 }
 
 module "sync" {
+  depends_on = [
+    module.storage
+  ]
   source = "./sync"
   name   = module.conf.sync.name
   image  = module.conf.sync.image
