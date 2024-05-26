@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-site
+  namespace: flux-system
+spec:
+  interval: 10s
+  retryInterval: 30s
+  sourceRef:
+    kind: Bucket
+    name: flux
+  path: ./manifests/applications/site/local
+  prune: true
+  wait: true
+  dependsOn:
+    - name: config-ingress
+  postBuild:
+    substitute:
+      local_hostname: local.test

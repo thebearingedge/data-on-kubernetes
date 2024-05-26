@@ -1,0 +1,6 @@
+namespace: apps-site
+
+resources:
+  - ../namespace.yaml
+  - site.deployment.yaml
+  - site.service.yaml

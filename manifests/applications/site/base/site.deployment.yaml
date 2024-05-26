@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site
+spec:
+  selector:
+    matchLabels:
+      app: site
+  template:
+    metadata:
+      labels:
+        app: site
+    spec:
+      containers:
+        - name: site
+          image: docker.io/hashicorp/http-echo:1.0.0
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 100m
+          ports:
+            - containerPort: 5678
