@@ -14,7 +14,7 @@ up *args:
   kubectl create secret generic local-ca \
     --dry-run=client \
     --from-file=ca.pem="$LOCAL_CA_CERT" \
-    --output yaml > flux-system/.tmp/local-ca.yaml
+    --output yaml > flux-system/.tmp/cloud-ca.yaml
   flux install \
     --components source-controller \
     --components helm-controller \
@@ -39,8 +39,6 @@ down *args:
 
 certs:
   mkcert -cert-file infrastructure/.tmp/tls.crt -key-file infrastructure/.tmp/tls.key \
-    "$LOCAL_HOSTNAME" \
-    "*.$LOCAL_HOSTNAME" \
     "$CLOUD_HOSTNAME" \
     "*.$CLOUD_HOSTNAME" && \
   cat infrastructure/.tmp/tls.crt infrastructure/.tmp/tls.key > infrastructure/.tmp/tls.pem
