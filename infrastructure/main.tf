@@ -129,6 +129,7 @@ module "local" {
   image    = module.conf.local.image
   hostname = module.conf.local.hostname
   net = {
+    bridge_network_id  = module.net.bridge_network_id
     private_network_id = module.net.private_network_id
     private_ip         = module.conf.local.private_ip
   }

@@ -2,7 +2,9 @@ resource "docker_container" "load" {
   name     = var.name
   image    = var.image
   hostname = var.hostname
-  must_run = false
+  networks_advanced {
+    name = var.net.bridge_network_id
+  }
   networks_advanced {
     name         = var.net.private_network_id
     ipv4_address = var.net.private_ip

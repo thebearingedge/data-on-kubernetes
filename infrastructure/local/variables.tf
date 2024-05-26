@@ -12,8 +12,9 @@ variable "hostname" {
 
 variable "net" {
   type = object({
-    private_ip         = string
+    bridge_network_id  = string
     private_network_id = string
+    private_ip         = string
   })
 }
 
