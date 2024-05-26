@@ -1,0 +1,7 @@
+namespace: infra-ingress
+
+resources:
+  - ../namespace.yaml
+  - ../helm-repositories
+  - bitnami.contour.helm-release.yaml
+  - jetstack.cert-manager.helm-release.yaml

@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: contour
+spec:
+  values:
+    contour:
+      debug: true
+    envoy:
+      service:
+        type: NodePort

@@ -1,0 +1,3 @@
+resources:
+  - bitnami.helm-repository.yaml
+  - jetstack.helm-repository.yaml
