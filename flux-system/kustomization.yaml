@@ -1,7 +1,7 @@
 namespace: flux-system
 
 resources:
-  - .tmp/cloud-ca.yaml
+  - .tmp/cloud-ca.configmap.yaml
   - .tmp/flux-install.yaml
 
 patches:

@@ -5,7 +5,7 @@
 - op: add
   path: /spec/template/spec/initContainers/0
   value:
-    name: trust-local-ca
+    name: trust-cloud-ca
     image: docker.io/grafana/alpine:3.15.4
     command:
       - /bin/sh
@@ -13,7 +13,7 @@
     args:
       - update-ca-certificates && cp -r /etc/ssl/certs/* /tmp/trust-bundle
     volumeMounts:
-      - name: trust-local-ca
+      - name: trust-cloud-ca
         mountPath: /usr/local/share/ca-certificates
       - name: trust-bundle
         mountPath: /tmp/trust-bundle
@@ -28,9 +28,9 @@
 - op: add
   path: /spec/template/spec/volumes/-
   value:
-    name: trust-local-ca
-    secret:
-      secretName: local-ca
+    name: trust-cloud-ca
+    configMap:
+      name: cloud-ca
 
 - op: add
   path: /spec/template/spec/volumes/-

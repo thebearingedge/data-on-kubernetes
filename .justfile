@@ -11,10 +11,10 @@ destroy *args:
   terraform -chdir=infrastructure destroy {{args}}
 
 up *args:
-  kubectl create secret generic local-ca \
+  kubectl create configmap cloud-ca \
     --dry-run=client \
     --from-file=ca.pem="$LOCAL_CA_CERT" \
-    --output yaml > flux-system/.tmp/cloud-ca.yaml
+    --output yaml > flux-system/.tmp/cloud-ca.configmap.yaml
   flux install \
     --components source-controller \
     --components helm-controller \
