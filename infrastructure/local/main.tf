@@ -1,7 +1,8 @@
-resource "docker_container" "load" {
-  name     = var.name
-  image    = var.image
-  hostname = var.hostname
+resource "docker_container" "local" {
+  name         = var.name
+  image        = var.image
+  hostname     = var.hostname
+  network_mode = "bridge"
   networks_advanced {
     name = var.net.bridge_network_id
   }

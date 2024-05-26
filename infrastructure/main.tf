@@ -115,6 +115,9 @@ module "nodes" {
   cilium = {
     version = module.conf.versions.cilium
   }
+  gateway_api = {
+    version = module.conf.versions.gateway_api
+  }
   kubelet_serving_cert_approver = {
     version = module.conf.versions.kubelet_serving_cert_approver
   }
