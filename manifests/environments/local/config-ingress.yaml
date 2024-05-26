@@ -1,0 +1,21 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: config-ingress
+  namespace: flux-system
+spec:
+  sourceRef:
+    kind: Bucket
+    name: flux
+  path: ./manifests/configurations/ingress/local
+  prune: true
+  wait: true
+  interval: 10s
+  timeout: 2m
+  retryInterval: 3m
+  dependsOn:
+    - name: infra-ingress
+    - name: config-secrets
+  postBuild:
+    substitute:
+      local_hostname: local.test

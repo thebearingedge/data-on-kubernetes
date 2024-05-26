@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-tls
+spec:
+  commonName: ${local_hostname}
+  dnsNames:
+    - ${local_hostname}
+    - "*.${local_hostname}"
+  issuerRef:
+    kind: Issuer
+    name: ingress
+  secretName: ingress-tls

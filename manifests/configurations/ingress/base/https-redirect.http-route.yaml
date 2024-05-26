@@ -1,0 +1,15 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: https-redirect
+spec:
+  parentRefs:
+    - name: web
+      namespace: config-ingress
+      sectionName: http
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301

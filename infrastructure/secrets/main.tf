@@ -18,4 +18,11 @@ resource "docker_container" "secrets" {
     executable = true
     content    = file("${path.module}/scripts/index.cgi")
   }
+  upload {
+    file = "/www/secrets/config-ingress/ingress-tls"
+    content = jsonencode({
+      "tls.crt" = trimspace(file(var.ingress_ca.cert))
+      "tls.key" = trimspace(file(var.ingress_ca.key))
+    })
+  }
 }

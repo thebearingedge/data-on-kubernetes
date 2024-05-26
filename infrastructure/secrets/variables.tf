@@ -16,3 +16,10 @@ variable "net" {
     private_network_id = string
   })
 }
+
+variable "ingress_ca" {
+  type = object({
+    cert = string
+    key  = string
+  })
+}

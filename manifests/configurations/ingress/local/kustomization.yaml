@@ -1,0 +1,7 @@
+namespace: config-ingress
+
+resources:
+  - ../base
+  - ingress-tls-ca.external-secret.yaml
+  - ingress.issuer.yaml
+  - ingress-tls.certificate.yaml

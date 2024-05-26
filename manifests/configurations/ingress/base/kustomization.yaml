@@ -1,0 +1,7 @@
+namespace: config-ingress
+
+resources:
+  - ../namespace.yaml
+  - contour.gateway-class.yaml
+  - web.gateway.yaml
+  - https-redirect.http-route.yaml

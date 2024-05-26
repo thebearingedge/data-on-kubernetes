@@ -33,6 +33,10 @@ module "secrets" {
     private_network_id = module.net.private_network_id
     private_ip         = module.conf.secrets.private_ip
   }
+  ingress_ca = {
+    cert = var.local_ca_cert
+    key  = var.local_ca_key
+  }
 }
 
 module "sync" {
