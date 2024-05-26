@@ -7,6 +7,7 @@ resource "docker_container" "sync" {
     "MINIO_ROOT_USER=${var.s3.access_key_id}",
     "MINIO_ROOT_PASSWORD=${var.s3.secret_access_key}"
   ]
+  network_mode = "bridge"
   networks_advanced {
     name         = var.net.private_network_id
     ipv4_address = var.net.private_ip

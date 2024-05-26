@@ -123,6 +123,18 @@ module "nodes" {
   }
 }
 
+module "local" {
+  source   = "./local"
+  name     = module.conf.local.name
+  image    = module.conf.local.image
+  hostname = module.conf.local.hostname
+  net = {
+    private_network_id = module.net.private_network_id
+    private_ip         = module.conf.local.private_ip
+  }
+  servers = module.nodes.servers
+}
+
 resource "local_sensitive_file" "kubeconfig" {
   content  = module.nodes.kubeconfig
   filename = "${path.module}/.kube/config"
