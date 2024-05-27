@@ -24,9 +24,9 @@ up *args:
   flux create source bucket flux \
     --interval=5s \
     --bucket-name=flux \
+    --endpoint="s3.$CLOUD_HOSTNAME" \
     --access-key="$S3_ACCESS_KEY_ID" \
-    --secret-key="$S3_SECRET_ACCESS_KEY" \
-    --endpoint="s3.$CLOUD_HOSTNAME"
+    --secret-key="$S3_SECRET_ACCESS_KEY"
   flux create kustomization flux \
     --prune=true \
     --interval=10s \
