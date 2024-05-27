@@ -3,3 +3,4 @@ namespace: infra-postgres
 resources:
   - ../namespace.yaml
   - ../helm-repositories
+  - cloudnative-pg.helm-release.yaml
