@@ -1,0 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-postgres
+  namespace: flux-system
+spec:
+  sourceRef:
+    kind: Bucket
+    name: flux
+  path: ./manifests/infrastructure/postgres/local
+  prune: true
+  wait: true
+  interval: 10s
+  timeout: 2m
+  retryInterval: 3m

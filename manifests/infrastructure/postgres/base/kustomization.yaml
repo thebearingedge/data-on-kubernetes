@@ -1,0 +1,5 @@
+namespace: infra-postgres
+
+resources:
+  - ../namespace.yaml
+  - ../helm-repositories
