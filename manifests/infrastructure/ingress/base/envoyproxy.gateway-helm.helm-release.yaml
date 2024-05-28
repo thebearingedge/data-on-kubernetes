@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: envoyproxy-gateway-helm
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: envoyproxy-gateway-helm
+    namespace: infra-ingress
+  values: {}
