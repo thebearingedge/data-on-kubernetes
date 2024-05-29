@@ -43,11 +43,6 @@ variable "cilium_version" {
   default = "1.15.4"
 }
 
-variable "gateway_api_version" {
-  type    = string
-  default = "1.1.0"
-}
-
 variable "local_path_provisioner_version" {
   type    = string
   default = "0.0.26"
