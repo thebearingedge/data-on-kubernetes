@@ -2,4 +2,5 @@ namespace: apps-site
 
 resources:
   - ../base
-  - site.http-route.yaml
+  - site.certificate.yaml
+  - site.ingress.yaml

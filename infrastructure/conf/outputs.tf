@@ -15,7 +15,6 @@ output "versions" {
     k8s                           = var.k8s_version
     talos                         = var.talos_version
     cilium                        = var.cilium_version
-    gateway_api                   = var.gateway_api_version
     local_path_provisioner        = var.local_path_provisioner_version
     kubelet_serving_cert_approver = var.kubelet_serving_cert_approver_version
   }

@@ -51,12 +51,6 @@ variable "cilium" {
   })
 }
 
-variable "gateway_api" {
-  type = object({
-    version = string
-  })
-}
-
 variable "local_path_provisioner" {
   type = object({
     version = string
