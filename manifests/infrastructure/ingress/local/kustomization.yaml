@@ -1,4 +1,2 @@
 resources:
   - ../base
-# patches:
-#   - path: patches/bitnami.contour.helm-release.patch.yaml
