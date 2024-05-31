@@ -3,12 +3,20 @@ output "public_endpoint" {
 }
 
 output "servers" {
-  value = [
-    for ip, node in docker_container.work : {
-      name = node.name
-      ipv4 = ip
-    }
-  ]
+  value = concat(
+    [
+      for ip, node in docker_container.ctrl : {
+        name = node.name
+        ipv4 = ip
+      }
+    ],
+    [
+      for ip, node in docker_container.work : {
+        name = node.name
+        ipv4 = ip
+      }
+    ]
+  )
 }
 
 output "boot_node" {
