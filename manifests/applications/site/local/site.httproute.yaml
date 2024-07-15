@@ -5,6 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: ingress
+      namespace: config-ingress
   hostnames:
     - local.test
   rules:
