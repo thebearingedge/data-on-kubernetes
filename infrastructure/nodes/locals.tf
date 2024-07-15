@@ -15,6 +15,7 @@ locals {
   talos_extra_manifests = [
     "https://raw.githubusercontent.com/rancher/local-path-provisioner/v${var.local_path_provisioner.version}/deploy/local-path-storage.yaml",
     "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/release-${var.kubelet_serving_cert_approver.version}/deploy/standalone-install.yaml",
+    "https://github.com/kubernetes-sigs/gateway-api/releases/download/v${var.gateway_api.version}/experimental-install.yaml"
   ]
 
   base_machine_patch = templatefile("${path.module}/templates/base.tftpl.yaml", {

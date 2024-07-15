@@ -3,5 +3,6 @@ namespace: infra-ingress
 resources:
   - ../namespace.yaml
   - ../helm-repositories
-  - haproxytech.kubernetes-ingress.helm-release.yaml
+  - ../oci-repositories
   - jetstack.cert-manager.helm-release.yaml
+  - envoyproxy.gateway-helm.helm-release.yaml

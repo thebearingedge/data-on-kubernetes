@@ -62,3 +62,9 @@ variable "kubelet_serving_cert_approver" {
     version = string
   })
 }
+
+variable "gateway_api" {
+  type = object({
+    version = string
+  })
+}

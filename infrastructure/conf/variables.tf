@@ -53,6 +53,11 @@ variable "kubelet_serving_cert_approver_version" {
   default = "0.8"
 }
 
+variable "gateway_api_version" {
+  type    = string
+  default = "1.0.0"
+}
+
 variable "ctrl_nodes" {
   type    = number
   default = 1

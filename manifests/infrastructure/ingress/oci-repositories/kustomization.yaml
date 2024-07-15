@@ -1,0 +1,2 @@
+resources:
+  - envoyproxy.gateway-helm.oci-repository.yaml
