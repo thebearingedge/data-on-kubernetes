@@ -5,3 +5,4 @@ resources:
   - ingress.envoyproxy.yaml
   - ingress.gatewayclass.yaml
   - ingress.gateway.yaml
+  - https.httproute.yaml
