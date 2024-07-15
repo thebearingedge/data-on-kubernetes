@@ -3,4 +3,4 @@ namespace: config-ingress
 resources:
   - ../base
   - ingress-tls-ca.external-secret.yaml
-  - ingress.cluster-issuer.yaml
+  - ingress.issuer.yaml

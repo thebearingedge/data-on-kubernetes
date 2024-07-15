@@ -2,3 +2,6 @@ namespace: config-ingress
 
 resources:
   - ../namespace.yaml
+  - ingress.envoyproxy.yaml
+  - ingress.gatewayclass.yaml
+  - ingress.gateway.yaml

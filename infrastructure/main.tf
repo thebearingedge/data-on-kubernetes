@@ -125,6 +125,9 @@ module "nodes" {
   local_path_provisioner = {
     version = module.conf.versions.local_path_provisioner
   }
+  gateway_api = {
+    version = module.conf.versions.gateway_api
+  }
 }
 
 module "local" {
